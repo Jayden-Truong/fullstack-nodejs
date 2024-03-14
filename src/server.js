@@ -8,14 +8,14 @@ require("dotenv").config();
 
 let app = express();
 
-// config
-viewEngine(app);
-initWebRoute(app);
-
 connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// config
+viewEngine(app);
+initWebRoute(app);
 
 let port = process.env.PORT || 2302;
 
