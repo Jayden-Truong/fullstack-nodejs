@@ -4,6 +4,7 @@ import {
   getAllUser,
   getUserInfoById,
   updateUserData,
+  deleteUserById,
 } from "../services/CRUDService";
 
 let getHomePage = async (req, res) => {
@@ -49,6 +50,16 @@ let putCRUD = async (req, res) => {
   let allUser = await updateUserData(payload);
   return res.render("displayCRUD.ejs", { data: allUser });
 };
+
+let deleteCRUD = async (req, res) => {
+  let userId = req.query.id;
+  if (userId) {
+    await deleteUserById(userId);
+    return res.send("Delete user success");
+  } else {
+    return res.send("User not found");
+  }
+};
 module.exports = {
   getHomePage,
   getAbout,
@@ -57,4 +68,5 @@ module.exports = {
   displayGetCRUD,
   getEditCRUD,
   putCRUD,
+  deleteCRUD,
 };
